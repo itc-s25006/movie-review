@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 映画レビューサイト（movie-review）
 
-## Getting Started
+鑑賞した映画の感想・評価・作品情報を記録し、一覧および詳細ページで閲覧できる Web アプリケーションです。
 
-First, run the development server:
+## 使用技術
+- フレームワーク: Next.js (App Router) / TypeScript
+- スタイリング: CSS Modules / globals.css
+- コンテンツ管理: microCMS（または Supabase）
+- ホスティング: Vercel
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ページ構成
+- `/` : トップページ（アプリの概要、最新の映画レビューピックアップ、一覧ページへの導線）
+- `/movies` : 映画レビュー一覧ページ（ポスター画像・タイトル・5段階評価・ジャンル表示、検索・ページネーション機能）
+- `/movies/[id]` : 映画レビュー詳細ページ（あらすじ、感想全文、評価スコア、監督・公開年・鑑賞日などの詳細情報）
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 主な機能仕様
+1. **映画レビュー一覧表示機能**
+   - 登録された映画レビューをカード形式で一覧表示
+2. **映画レビュー詳細表示機能**
+   - 選択した映画の個別レビュー詳細（感想全文・評価スコア・ジャンル等）を表示
+3. **検索・ジャンル絞り込み機能（応用）**
+   - キーワードによる映画タイトル・感想の検索、およびジャンル別絞り込み
+4. **ページネーション機能（応用）**
+   - 1ページあたりの表示件数を制限し、ページ切り替えで過去レビューを閲覧# movie-review
