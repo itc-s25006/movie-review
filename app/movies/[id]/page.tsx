@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { getMovieDetail } from '@/libs/microcms';
 
+export const dynamic = 'force-dynamic';
+
 type Props = {
   params: Promise<{ id: string }>;
 };
