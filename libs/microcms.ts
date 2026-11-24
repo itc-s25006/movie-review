@@ -11,7 +11,6 @@ export const client = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
   apiKey: process.env.MICROCMS_API_KEY,
 });
-
 export type Movie = {
   id: string;
   createdAt: string;
@@ -24,6 +23,11 @@ export type Movie = {
   director: string;
   summary: string;
   review: string;
+  poster?: {
+    url: string;
+    height: number;
+    width: number;
+  };
 };
 
 // 映画一覧を取得する関数

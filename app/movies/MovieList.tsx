@@ -14,7 +14,6 @@ export default function MovieList({ movies }: Props) {
   const [selectedGenre, setSelectedGenre] = useState('すべて');
   const [sortOrder, setSortOrder] = useState<'default' | 'rating'>('default');
 
-  // 登録されているデータからジャンル一覧を自動作成
   const genres = [
     'すべて',
     ...Array.from(
@@ -26,7 +25,6 @@ export default function MovieList({ movies }: Props) {
     ),
   ];
 
-  // 検索・ジャンル絞り込み・並び替えを実行
   const filteredMovies = movies
     .filter((movie) => {
       const genreName = Array.isArray(movie.genre) ? movie.genre[0] : movie.genre;
@@ -41,9 +39,9 @@ export default function MovieList({ movies }: Props) {
     })
     .sort((a, b) => {
       if (sortOrder === 'rating') {
-        return b.rating - a.rating; // 評価が高い順
+        return b.rating - a.rating;
       }
-      return 0; // デフォルト（登録順）
+      return 0;
     });
 
   return (
@@ -61,7 +59,6 @@ export default function MovieList({ movies }: Props) {
         }}
       >
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          {/* キーワード検索ボックス */}
           <input
             type="text"
             placeholder="映画タイトル・監督名で検索..."
@@ -77,7 +74,6 @@ export default function MovieList({ movies }: Props) {
             }}
           />
 
-          {/* 並び替えセレクト */}
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value as 'default' | 'rating')}
@@ -95,7 +91,6 @@ export default function MovieList({ movies }: Props) {
           </select>
         </div>
 
-        {/* ジャンル絞り込みボタン */}
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {genres.map((genre) => {
             const isSelected = selectedGenre === genre;
@@ -121,12 +116,10 @@ export default function MovieList({ movies }: Props) {
         </div>
       </div>
 
-      {/* 件数表示 */}
       <p style={{ marginBottom: '16px', color: '#555', fontSize: '14px' }}>
         該当件数：{filteredMovies.length}件
       </p>
 
-      {/* 映画カード一覧 */}
       {filteredMovies.length === 0 ? (
         <p style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
           条件に一致する映画が見つかりませんでした。
@@ -140,6 +133,35 @@ export default function MovieList({ movies }: Props) {
             return (
               <article key={movie.id} className={styles.card}>
                 <div>
+{/* ポスター画像エリア */}
+                  <div
+                    style={{
+                      marginBottom: '14px',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      backgroundColor: '#f4f5f7',
+                      height: '180px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {movie.poster ? (
+                      <img
+                        src={movie.poster.url}
+                        alt={movie.title}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          display: 'block',
+                        }}
+                      />
+                    ) : (
+                      <span style={{ color: '#999', fontSize: '13px' }}>No Image</span>
+                    )}
+                  </div>
+
                   <div className={styles.cardHeader}>
                     <span className={styles.genre}>{genreName}</span>
                     <span className={styles.year}>{movie.releaseYear}年公開</span>
